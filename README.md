@@ -4,6 +4,8 @@
 - If data exists on Local, copy it to the server with scp
   - If data sits on the cloud, download it inside the server
 - Optional: Copy SSH keys `scp -rp ~/.ssh user@remote-server:/tmp/.ssh`
+  - Also run `ssh-add ~/.ssh/id_rsa` after adding the `.ssh` folder to `/root`
+
 
 - SSH into the Server
 
@@ -52,7 +54,7 @@ environment.yml
 
 ./data:
   interim                 
-  processed 
+  processed
   raw
 
 ./figures:
@@ -71,12 +73,12 @@ environment.yml
 ./reports:
 
 ./src:
-  __init__.py 
+  __init__.py
   obtain      
   scrub       
   explore     
-  model 
+  model
   interpret   
-  
+
   tests
 ```
