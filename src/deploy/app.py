@@ -1,7 +1,4 @@
 #!flask/bin/python
-import os
-os.chdir("/home/")
-
 from flask import Flask, jsonify, request
 import numpy as np
 from sklearn.externals import joblib
@@ -25,28 +22,28 @@ def hi():
 def predict():
     """
     """
-    lr = joblib.load('/home/models/logistic.pkl') 
-    dt = joblib.load('/home/models/tree.pkl') 
+    lr = joblib.load('models/logistic.pkl')
+    dt = joblib.load('models/tree.pkl')
 
     dict_iris_type = {
-        0: 'setosa', 
-        1: 'versicolor', 
+        0: 'setosa',
+        1: 'versicolor',
         2: 'virginica'
     }
-    
+
     query = request.get_json(force=True)
-    
+
     X_te = np.array([[
-        query.get('sl'), 
-        query.get('sw'), 
-        query.get('pl'), 
+        query.get('sl'),
+        query.get('sw'),
+        query.get('pl'),
         query.get('pw')
     ]])
-    
+
     y_pr = lr.predict(X_te) if query.get('algo') == 'lr' else dt.predict(X_te)
     output = dict_iris_type.get(y_pr.item())
-    
+
     return jsonify(iris_type=output, model=query.get('algo'))
 
 if __name__ == '__main__':
-     app.run(port=5000, host='0.0.0.0')
+     app.run(port=5001, host='0.0.0.0')

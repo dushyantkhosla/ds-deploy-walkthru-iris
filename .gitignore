@@ -1,6 +1,9 @@
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# Temporary files
+.pyc
+
 # Data Files
 *.csv
 *.txt
