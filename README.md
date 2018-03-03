@@ -1,27 +1,32 @@
 # Getting Started
 
+**Get Data**
 
 - If data exists on Local, copy it to the server with scp
   - If data sits on the cloud, download it inside the server
 - Optional: Copy SSH keys `scp -rp ~/.ssh user@remote-server:/tmp/.ssh`
   - Also run `ssh-add ~/.ssh/id_rsa` after adding the `.ssh` folder to `/root`
 
+**Get Infra**
 
 - SSH into the Server
-
-- Pull a Docker Container from https://hub.docker.com/u/eadlab/dashboard/
+- Pull a Docker Container
 
 ```
 docker pull <image>
 docker images
 ```
 
-- Get the code for your project if it exists, or clone *this* repository
+**Get Code**
+
+- Get the code for your project if it exists, or use a cookiecutter
+- git clone https://github.com/dushyantkhosla/ds-cookiecutter.git
 
 ```
 git clone git-url
-# git clone https://github.com/dushyantkhosla/ds-cookiecutter.git ./project-01
 ```
+
+**Start Docker**
 
 - Start a Docker Container using the appropriate image, map ports and mirror directories
 
