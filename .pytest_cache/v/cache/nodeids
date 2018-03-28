@@ -1,0 +1,4 @@
+[
+  "src/tests/test_import.py::test_iris_import",
+  "src/tests/test_scrub.py::test_iris_scrub"
+]
