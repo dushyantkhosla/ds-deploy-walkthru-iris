@@ -7,12 +7,12 @@ def compress_numeric_columns(COL):
     downcast it to the lowest size.
     Else,
     Return as-is.
-    
+
     Parameters
     -----------
     COL: pandas.Series
         The Series to shrink
-        
+
     Returns
     -------
     if numeric, a compressed series
@@ -31,6 +31,7 @@ def get_clean_iris():
     Compress it if possible
     """
     if os.path.exists("data/processed/iris.csv"):
+        print("Retrieving clean data from backup...")
         df = pd.read_csv("data/processed/iris.csv")
         return df
     else:
@@ -38,4 +39,13 @@ def get_clean_iris():
         df.columns = \
         map(lambda i: ''.join([x for x in i.lower() if x not in './()& ']).replace('cm', ''),
             df.columns)
+        print("Persisting cleaned iris data...")
+        df.to_csv("data/processed/iris.csv")
         return df
+
+if __name__ == "__main__":
+    import sys
+    sys.path.append(os.getcwd())
+
+    from src.obtain import get_raw_iris
+    _ = get_clean_iris()

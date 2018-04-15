@@ -9,7 +9,7 @@ def get_raw_iris():
     If it doesn't, import it again
     """
     if os.path.exists("data/raw/iris.csv"):
-        print("Loading from backup")
+        print("Loading raw data from backup")
         return pd.read_csv("data/raw/iris.csv")
     else:
         print("Downloading data")
@@ -20,5 +20,12 @@ def get_raw_iris():
         ], axis=1)
          .assign(iris_type = lambda fr: fr['iris_type'].replace({k:v for k, v in enumerate(load_iris().get('target_names'))}))
         )
+        print("Persisting data...")
+        df_iris.to_csv("data/raw/iris.csv", index=False)
 
     return df_iris
+
+if __name__ == "__main__":
+    import sys
+    sys.path.append(os.getcwd())
+    _ = get_raw_iris()
